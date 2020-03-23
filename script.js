@@ -2,10 +2,11 @@
 const queryURL = 'http://api.openweathermap.org/data/2.5/weather'
 const key = '52af5110a99ad9f2762ddfe25f5f2b69'
 
+const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
+const toronto = 'Toronto'
+
 //This function is set to give the weather in Toronto, the default city chosen
 $(document).ready(function () {
-
-    const toronto = 'Toronto'
 
     $.ajax({
         url: queryURL,
@@ -29,6 +30,20 @@ $(document).ready(function () {
 
             console.log(data)
 
+            const torontoIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=43.7&lon=-79.42";
+            
+            $.ajax({
+                url: torontoIndexURL,
+                dataType: 'json',
+                type: 'GET',
+
+                success: function(data){
+                    $('#uv').empty()
+                    $('#uv').append('UV Index: ' + data.value)
+                    console.log(data.value)
+                }
+            })
+
         }
 
     });
@@ -37,10 +52,8 @@ $(document).ready(function () {
 
 });
 
+//This function shows the 5-day forecast for Toronto, the default city chosen
 function torontoForecast(){
-
-    const toronto = 'Toronto'
-    const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
 
     $.ajax({
         url: forecastURL,
@@ -52,25 +65,25 @@ function torontoForecast(){
 
             $('.forecast').empty()
 
-            $('#date').append(data.list[1].dt_txt)
-            $('#card-temperature').append('Temperature: ' + data.list[1].main.temp + ' &deg;C ')
-            $('#card-humidity').append('Humidity: ' + data.list[1].main.humidity + '%')
+            $('#date').append(data.list[4].dt_txt)
+            $('#card-temperature').append('Temperature: ' + data.list[4].main.temp + ' &deg;C ')
+            $('#card-humidity').append('Humidity: ' + data.list[4].main.humidity + '%')
 
-            $('#date2').append(data.list[9].dt_txt)
-            $('#card-temperature2').append('Temperature: ' + data.list[9].main.temp + ' &deg;C ')
-            $('#card-humidity2').append('Humidity: ' + data.list[9].main.humidity + '%')
+            $('#date2').append(data.list[12].dt_txt)
+            $('#card-temperature2').append('Temperature: ' + data.list[12].main.temp + ' &deg;C ')
+            $('#card-humidity2').append('Humidity: ' + data.list[12].main.humidity + '%')
 
-            $('#date3').append(data.list[17].dt_txt)
-            $('#card-temperature3').append('Temperature: ' + data.list[17].main.temp + ' &deg;C ')
-            $('#card-humidity3').append('Humidity: ' + data.list[17].main.humidity + '%')
+            $('#date3').append(data.list[20].dt_txt)
+            $('#card-temperature3').append('Temperature: ' + data.list[20].main.temp + ' &deg;C ')
+            $('#card-humidity3').append('Humidity: ' + data.list[20].main.humidity + '%')
 
-            $('#date4').append(data.list[25].dt_txt)
-            $('#card-temperature4').append('Temperature: ' + data.list[25].main.temp + ' &deg;C ')
-            $('#card-humidity4').append('Humidity: ' + data.list[25].main.humidity + '%')
+            $('#date4').append(data.list[28].dt_txt)
+            $('#card-temperature4').append('Temperature: ' + data.list[28].main.temp + ' &deg;C ')
+            $('#card-humidity4').append('Humidity: ' + data.list[28].main.humidity + '%')
 
-            $('#date5').append(data.list[33].dt_txt)
-            $('#card-temperature5').append('Temperature: ' + data.list[33].main.temp + ' &deg;C ')
-            $('#card-humidity5').append('Humidity: ' + data.list[33].main.humidity + '%')
+            $('#date5').append(data.list[36].dt_txt)
+            $('#card-temperature5').append('Temperature: ' + data.list[36].main.temp + ' &deg;C ')
+            $('#card-humidity5').append('Humidity: ' + data.list[36].main.humidity + '%')
 
         }
 
@@ -78,7 +91,7 @@ function torontoForecast(){
 
 }
 
-//This function, once ready, will make a request to the openweathermap API and retrieve all of the data
+//This function, once ready, will make a request to the open weather map API and retrieve all of the data
 $(document).ready(function () {
     $("#button-addon1").click(function () {
 
@@ -92,18 +105,38 @@ $(document).ready(function () {
 
             success: function (data) {
 
-                $('#title').empty()
-                $('#temperature').empty()
-                $('#humidity').empty()
-                $('#wind').empty()
-
-                // console.log(data)
-
-                // const name = (data.name)
+                $('.weather').empty()
+                
                 $('#title').append(data.name)
                 $('#temperature').append('Temperature: ' + data.main.temp + ' &deg;C ')
                 $('#humidity').append('Humidity: ' + data.main.humidity + '%')
                 $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
+
+                // console.log(data)
+
+                //Getting lon + lat of city searched by user to get the UV Index
+                const lon = (data.coord.lon)
+                const lat = (data.coord.lat)
+
+                console.log(lon, lat)
+
+                //Putting the url together that will be used to make API call to open weather map to get the UV index value
+                const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=";
+	            const long = "&lon=";
+	            const indexSearch = uvURL + lat + long + lon;
+
+                //Making the API call to open weather map to get the UV index value
+                $.ajax({
+                    url: indexSearch,
+                    dataType: 'json',
+                    type: 'GET',
+
+                    success: function(data){
+                        $('#uv').empty()
+                        $('#uv').append('UV Index: ' + data.value)
+                        console.log(data.value)
+                    }
+                })
 
             }
 
@@ -141,9 +174,29 @@ $(document).ready(function () {
 
             success: function (data) {
 
+                $('.forecast').empty()
+
+                $('#date').append(data.list[4].dt_txt)
+                $('#card-temperature').append('Temperature: ' + data.list[4].main.temp + ' &deg;C ')
+                $('#card-humidity').append('Humidity: ' + data.list[4].main.humidity + '%')
+    
+                $('#date2').append(data.list[12].dt_txt)
+                $('#card-temperature2').append('Temperature: ' + data.list[12].main.temp + ' &deg;C ')
+                $('#card-humidity2').append('Humidity: ' + data.list[12].main.humidity + '%')
+    
+                $('#date3').append(data.list[20].dt_txt)
+                $('#card-temperature3').append('Temperature: ' + data.list[20].main.temp + ' &deg;C ')
+                $('#card-humidity3').append('Humidity: ' + data.list[20].main.humidity + '%')
+    
+                $('#date4').append(data.list[28].dt_txt)
+                $('#card-temperature4').append('Temperature: ' + data.list[28].main.temp + ' &deg;C ')
+                $('#card-humidity4').append('Humidity: ' + data.list[28].main.humidity + '%')
+    
+                $('#date5').append(data.list[36].dt_txt)
+                $('#card-temperature5').append('Temperature: ' + data.list[36].main.temp + ' &deg;C ')
+                $('#card-humidity5').append('Humidity: ' + data.list[36].main.humidity + '%')
+
                 console.log(data)
-                $('#date').empty()
-                $('#date').append(data.list[1].dt_txt)
 
             }
 
