@@ -1,14 +1,9 @@
 $("#button-addon1").on("click", function(){
+
     const userInput = $('.form-control').val();
 
-    const cityList = $('.list-group').append('<li>Montreal</li>');
-    $('.cities').append(cityList);
+    const cityList = $('.list-group-item').append('<ul></ul>');
+    cityList.append(userInput)
     
-    // let $myList = $('ul').append('<li>text</li>');
-    // $('.cities').append($myList);
-    // console.log(userInput)
-    // $('.form-control').val('')
+    $('.form-control').val('')
 })
-
-// var $myList = $('ul').append('<li>Montreal</li>');
-// $('.cities').append($myList);
