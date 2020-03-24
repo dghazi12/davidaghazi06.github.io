@@ -31,17 +31,38 @@ $(document).ready(function () {
             console.log(data)
 
             const torontoIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=43.7&lon=-79.42";
-            
+
             $.ajax({
                 url: torontoIndexURL,
                 dataType: 'json',
                 type: 'GET',
 
-                success: function(data){
+                success: function (data) {
+                    const uvIndex = data.value
+
                     $('#uv').empty()
-                    $('#uv').append('UV Index: ' + data.value)
-                    console.log(data.value)
+                    $('#uv').append('UV Index: ' + uvIndex)
+                    console.log(uvIndex)
+
+                    // If the UV index is between 0 and 2, style Green
+                    if (uvIndex <= 2) {
+                        $('#uv').attr("class", "uvGreen");
+                        // If the UV index is between 3 and 5, style Yellow
+                    } else if (uvIndex <= 5) {
+                        $('#uv').attr("class", "uvYellow");
+                        // If the UV index is 6 or 7, style Orange    
+                    } else if (uvIndex <= 7) {
+                        $('#uv').attr("class", "uvOrange");
+                        // If the UV index is between 8 and 10, style Red
+                    } else if (uvIndex <= 10) {
+                        $('#uv').attr("class", "uvRed");
+                        // If the UV index is 11+, style Purple
+                    } else {
+                        $('#uv').attr("class", "uvPurple");
+                    }
+
                 }
+
             })
 
         }
@@ -53,7 +74,7 @@ $(document).ready(function () {
 });
 
 //This function shows the 5-day forecast for Toronto, the default city chosen
-function torontoForecast(){
+function torontoForecast() {
 
     $.ajax({
         url: forecastURL,
@@ -93,6 +114,7 @@ function torontoForecast(){
 
 //This function, once ready, will make a request to the open weather map API and retrieve all of the data
 $(document).ready(function () {
+    
     $("#button-addon1").click(function () {
 
         const city = $('.form-control').val();
@@ -106,13 +128,11 @@ $(document).ready(function () {
             success: function (data) {
 
                 $('.weather').empty()
-                
+
                 $('#title').append(data.name)
                 $('#temperature').append('Temperature: ' + data.main.temp + ' &deg;C ')
                 $('#humidity').append('Humidity: ' + data.main.humidity + '%')
                 $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
-
-                // console.log(data)
 
                 //Getting lon + lat of city searched by user to get the UV Index
                 const lon = (data.coord.lon)
@@ -122,8 +142,8 @@ $(document).ready(function () {
 
                 //Putting the url together that will be used to make API call to open weather map to get the UV index value
                 const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=";
-	            const long = "&lon=";
-	            const indexSearch = uvURL + lat + long + lon;
+                const long = "&lon=";
+                const indexSearch = uvURL + lat + long + lon;
 
                 //Making the API call to open weather map to get the UV index value
                 $.ajax({
@@ -131,10 +151,30 @@ $(document).ready(function () {
                     dataType: 'json',
                     type: 'GET',
 
-                    success: function(data){
+                    success: function (data) {
+                        const uvIndex = data.value
+
                         $('#uv').empty()
-                        $('#uv').append('UV Index: ' + data.value)
-                        console.log(data.value)
+                        $('#uv').append('UV Index: ' + uvIndex)
+                        console.log(uvIndex)
+
+                        // If the UV index is between 0 and 2, style Green
+                        if (uvIndex <= 2) {
+                            $('#uv').attr("class", "uvGreen");
+                        // If the UV index is between 3 and 5, style Yellow
+                        } else if (uvIndex <= 5) {
+                            $('#uv').attr("class", "uvYellow");
+                        // If the UV index is 6 or 7, style Orange    
+                        } else if (uvIndex <= 7) {
+                            $('#uv').attr("class", "uvOrange");
+                        // If the UV index is between 8 and 10, style Red
+                        } else if (uvIndex <= 10) {
+                            $('#uv').attr("class", "uvRed");
+                        // If the UV index is 11+, style Purple
+                        } else {
+                            $('#uv').attr("class", "uvPurple");
+                        }
+
                     }
                 })
 
@@ -179,24 +219,22 @@ $(document).ready(function () {
                 $('#date').append(data.list[4].dt_txt)
                 $('#card-temperature').append('Temperature: ' + data.list[4].main.temp + ' &deg;C ')
                 $('#card-humidity').append('Humidity: ' + data.list[4].main.humidity + '%')
-    
+
                 $('#date2').append(data.list[12].dt_txt)
                 $('#card-temperature2').append('Temperature: ' + data.list[12].main.temp + ' &deg;C ')
                 $('#card-humidity2').append('Humidity: ' + data.list[12].main.humidity + '%')
-    
+
                 $('#date3').append(data.list[20].dt_txt)
                 $('#card-temperature3').append('Temperature: ' + data.list[20].main.temp + ' &deg;C ')
                 $('#card-humidity3').append('Humidity: ' + data.list[20].main.humidity + '%')
-    
+
                 $('#date4').append(data.list[28].dt_txt)
                 $('#card-temperature4').append('Temperature: ' + data.list[28].main.temp + ' &deg;C ')
                 $('#card-humidity4').append('Humidity: ' + data.list[28].main.humidity + '%')
-    
+
                 $('#date5').append(data.list[36].dt_txt)
                 $('#card-temperature5').append('Temperature: ' + data.list[36].main.temp + ' &deg;C ')
                 $('#card-humidity5').append('Humidity: ' + data.list[36].main.humidity + '%')
-
-                console.log(data)
 
             }
 
