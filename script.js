@@ -28,8 +28,15 @@ $(document).ready(function () {
             $('#humidity').append('Humidity: ' + data.main.humidity + '%')
             $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
 
-            console.log(data)
+            //Appending the weather image icon
+            const img = "https://openweathermap.org/img/wn/" + (data.weather[0].icon) + "@2x.png"; 
+            
+            const torontoIcon = $("<img>");
 
+            torontoIcon.attr("src", img);
+            $('#title').append(torontoIcon)
+
+            //API request to get the 5-day forecast for Toronto
             const torontoIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=43.7&lon=-79.42";
 
             $.ajax({
@@ -114,7 +121,7 @@ function torontoForecast() {
 
 //This function, once ready, will make a request to the open weather map API and retrieve all of the data
 $(document).ready(function () {
-    
+
     $("#button-addon1").click(function () {
 
         const city = $('.form-control').val();
@@ -139,6 +146,7 @@ $(document).ready(function () {
                 const lat = (data.coord.lat)
 
                 console.log(lon, lat)
+                console.log(data)
 
                 //Putting the url together that will be used to make API call to open weather map to get the UV index value
                 const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=";
