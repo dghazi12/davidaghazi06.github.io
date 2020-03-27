@@ -29,11 +29,10 @@ $(document).ready(function () {
             $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
 
             //Appending the weather image icon
-            const img = "https://openweathermap.org/img/wn/" + (data.weather[0].icon) + "@2x.png"; 
-            
+            const torontoImgIcon = "https://openweathermap.org/img/wn/" + (data.weather[0].icon) + "@2x.png"; 
             const torontoIcon = $("<img>");
 
-            torontoIcon.attr("src", img);
+            torontoIcon.attr("src", torontoImgIcon);
             $('#title').append(torontoIcon)
 
             //API request to get the 5-day forecast for Toronto
@@ -93,25 +92,65 @@ function torontoForecast() {
 
             $('.forecast').empty()
 
-            $('#date').append(data.list[4].dt_txt)
-            $('#card-temperature').append('Temperature: ' + data.list[4].main.temp + ' &deg;C ')
-            $('#card-humidity').append('Humidity: ' + data.list[4].main.humidity + '%')
+            //Appending the date, temperature and humidity for the 5 day forecast
+            $('#date').append(data.list[0].dt_txt)
+            $('#card-temperature').append('Temperature: ' + data.list[0].main.temp + ' &deg;C ')
+            $('#card-humidity').append('Humidity: ' + data.list[0].main.humidity + '%')
 
-            $('#date2').append(data.list[12].dt_txt)
-            $('#card-temperature2').append('Temperature: ' + data.list[12].main.temp + ' &deg;C ')
-            $('#card-humidity2').append('Humidity: ' + data.list[12].main.humidity + '%')
+            //Appending the icon image for the 5-day forecast weather
+            const torontoImgIcon1 = "https://openweathermap.org/img/wn/" + (data.list[0].weather[0].icon) + "@2x.png"; 
+            const torontoIcon1 = $("<img>");
 
-            $('#date3').append(data.list[20].dt_txt)
-            $('#card-temperature3').append('Temperature: ' + data.list[20].main.temp + ' &deg;C ')
-            $('#card-humidity3').append('Humidity: ' + data.list[20].main.humidity + '%')
+            torontoIcon1.attr("src", torontoImgIcon1);
+            $('#picture').append(torontoIcon1)
 
-            $('#date4').append(data.list[28].dt_txt)
-            $('#card-temperature4').append('Temperature: ' + data.list[28].main.temp + ' &deg;C ')
-            $('#card-humidity4').append('Humidity: ' + data.list[28].main.humidity + '%')
+            //Appending the date, temperature and humidity for the 5 day forecast
+            $('#date2').append(data.list[7].dt_txt)
+            $('#card-temperature2').append('Temperature: ' + data.list[7].main.temp + ' &deg;C ')
+            $('#card-humidity2').append('Humidity: ' + data.list[7].main.humidity + '%')
 
-            $('#date5').append(data.list[36].dt_txt)
-            $('#card-temperature5').append('Temperature: ' + data.list[36].main.temp + ' &deg;C ')
-            $('#card-humidity5').append('Humidity: ' + data.list[36].main.humidity + '%')
+            //Appending the icon image for the 5-day forecast weather
+            const torontoImgIcon2 = "https://openweathermap.org/img/wn/" + (data.list[7].weather[0].icon) + "@2x.png"; 
+            const torontoIcon2 = $("<img>");
+
+            torontoIcon2.attr("src", torontoImgIcon2);
+            $('#picture2').append(torontoIcon2)
+
+            //Appending the date, temperature and humidity for the 5 day forecast
+            $('#date3').append(data.list[15].dt_txt)
+            $('#card-temperature3').append('Temperature: ' + data.list[15].main.temp + ' &deg;C ')
+            $('#card-humidity3').append('Humidity: ' + data.list[15].main.humidity + '%')
+
+            //Appending the icon image for the 5-day forecast weather
+            const torontoImgIcon3 = "https://openweathermap.org/img/wn/" + (data.list[15].weather[0].icon) + "@2x.png"; 
+            const torontoIcon3 = $("<img>");
+
+            torontoIcon3.attr("src", torontoImgIcon3);
+            $('#picture3').append(torontoIcon3);
+
+            //Appending the date, temperature and humidity for the 5 day forecast
+            $('#date4').append(data.list[23].dt_txt)
+            $('#card-temperature4').append('Temperature: ' + data.list[23].main.temp + ' &deg;C ')
+            $('#card-humidity4').append('Humidity: ' + data.list[23].main.humidity + '%')
+
+            //Appending the icon image for the 5-day forecast weather
+            const torontoImgIcon4 = "https://openweathermap.org/img/wn/" + (data.list[23].weather[0].icon) + "@2x.png"; 
+            const torontoIcon4 = $("<img>");
+
+            torontoIcon4.attr("src", torontoImgIcon4);
+            $('#picture4').append(torontoIcon4);
+
+            //Appending the date, temperature and humidity for the 5 day forecast
+            $('#date5').append(data.list[31].dt_txt)
+            $('#card-temperature5').append('Temperature: ' + data.list[31].main.temp + ' &deg;C ')
+            $('#card-humidity5').append('Humidity: ' + data.list[31].main.humidity + '%')
+
+            //Appending the icon image for the 5-day forecast weather
+            const torontoImgIcon5 = "https://openweathermap.org/img/wn/" + (data.list[31].weather[0].icon) + "@2x.png"; 
+            const torontoIcon5 = $("<img>");
+
+            torontoIcon5.attr("src", torontoImgIcon5);
+            $('#picture5').append(torontoIcon5);
 
         }
 
@@ -144,9 +183,6 @@ $(document).ready(function () {
                 //Getting lon + lat of city searched by user to get the UV Index
                 const lon = (data.coord.lon)
                 const lat = (data.coord.lat)
-
-                console.log(lon, lat)
-                console.log(data)
 
                 //Putting the url together that will be used to make API call to open weather map to get the UV index value
                 const uvURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=";
@@ -224,25 +260,60 @@ $(document).ready(function () {
 
                 $('.forecast').empty()
 
-                $('#date').append(data.list[4].dt_txt)
-                $('#card-temperature').append('Temperature: ' + data.list[4].main.temp + ' &deg;C ')
-                $('#card-humidity').append('Humidity: ' + data.list[4].main.humidity + '%')
+                $('#date').append(data.list[0].dt_txt)
+                $('#card-temperature').append('Temperature: ' + data.list[0].main.temp + ' &deg;C ')
+                $('#card-humidity').append('Humidity: ' + data.list[0].main.humidity + '%')
 
-                $('#date2').append(data.list[12].dt_txt)
-                $('#card-temperature2').append('Temperature: ' + data.list[12].main.temp + ' &deg;C ')
-                $('#card-humidity2').append('Humidity: ' + data.list[12].main.humidity + '%')
+                //Appending the icon image for the 5-day forecast weather
+                const imgIcon1 = "https://openweathermap.org/img/wn/" + (data.list[0].weather[0].icon) + "@2x.png"; 
+                const icon1 = $("<img>");
 
-                $('#date3').append(data.list[20].dt_txt)
-                $('#card-temperature3').append('Temperature: ' + data.list[20].main.temp + ' &deg;C ')
-                $('#card-humidity3').append('Humidity: ' + data.list[20].main.humidity + '%')
+                icon1.attr("src", imgIcon1);
+                $('#picture').append(icon1)
 
-                $('#date4').append(data.list[28].dt_txt)
-                $('#card-temperature4').append('Temperature: ' + data.list[28].main.temp + ' &deg;C ')
-                $('#card-humidity4').append('Humidity: ' + data.list[28].main.humidity + '%')
+                $('#date2').append(data.list[7].dt_txt)
+                $('#card-temperature2').append('Temperature: ' + data.list[7].main.temp + ' &deg;C ')
+                $('#card-humidity2').append('Humidity: ' + data.list[7].main.humidity + '%')
 
-                $('#date5').append(data.list[36].dt_txt)
-                $('#card-temperature5').append('Temperature: ' + data.list[36].main.temp + ' &deg;C ')
-                $('#card-humidity5').append('Humidity: ' + data.list[36].main.humidity + '%')
+                //Appending the icon image for the 5-day forecast weather
+                const imgIcon2 = "https://openweathermap.org/img/wn/" + (data.list[7].weather[0].icon) + "@2x.png"; 
+                const icon2 = $("<img>");
+
+                icon2.attr("src", imgIcon2);
+                $('#picture2').append(icon2);
+
+                $('#date3').append(data.list[15].dt_txt)
+                $('#card-temperature3').append('Temperature: ' + data.list[15].main.temp + ' &deg;C ')
+                $('#card-humidity3').append('Humidity: ' + data.list[15].main.humidity + '%')
+
+                 //Appending the icon image for the 5-day forecast weather
+                 const imgIcon3 = "https://openweathermap.org/img/wn/" + (data.list[15].weather[0].icon) + "@2x.png"; 
+                 const icon3 = $("<img>");
+ 
+                 icon3.attr("src", imgIcon3);
+                 $('#picture3').append(icon3);
+
+                $('#date4').append(data.list[23].dt_txt)
+                $('#card-temperature4').append('Temperature: ' + data.list[23].main.temp + ' &deg;C ')
+                $('#card-humidity4').append('Humidity: ' + data.list[23].main.humidity + '%')
+
+                //Appending the icon image for the 5-day forecast weather
+                const imgIcon4 = "https://openweathermap.org/img/wn/" + (data.list[23].weather[0].icon) + "@2x.png"; 
+                const icon4 = $("<img>");
+
+                icon4.attr("src", imgIcon4);
+                $('#picture4').append(icon4);
+
+                $('#date5').append(data.list[31].dt_txt)
+                $('#card-temperature5').append('Temperature: ' + data.list[31].main.temp + ' &deg;C ')
+                $('#card-humidity5').append('Humidity: ' + data.list[31].main.humidity + '%')
+
+                //Appending the icon image for the 5-day forecast weather
+                const imgIcon5 = "https://openweathermap.org/img/wn/" + (data.list[31].weather[0].icon) + "@2x.png"; 
+                const icon5 = $("<img>");
+
+                icon5.attr("src", imgIcon5);
+                $('#picture5').append(icon5);
 
             }
 
