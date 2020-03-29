@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             //Making the request for the specific data to be appended to the page
             $('#title').append(data.name)
-            $('#temperature').append('Temperature: ' + data.main.temp + ' &deg;C ')
+            $('#temperature').append('Temperature: ' + Math.round(data.main.temp) + ' &deg;C ')
             $('#humidity').append('Humidity: ' + data.main.humidity + '%')
             $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
 
@@ -48,7 +48,6 @@ $(document).ready(function () {
 
                     $('#uv').empty()
                     $('#uv').append('UV Index: ' + uvIndex)
-                    console.log(uvIndex)
 
                     // If the UV index is between 0 and 2, style Green
                     if (uvIndex <= 2) {
@@ -94,7 +93,7 @@ function torontoForecast() {
 
             //Appending the date, temperature and humidity for the 5 day forecast
             $('#date').append(data.list[0].dt_txt)
-            $('#card-temperature').append('Temperature: ' + data.list[0].main.temp + ' &deg;C ')
+            $('#card-temperature').append('Temperature: ' + Math.round(data.list[0].main.temp) + ' &deg;C ')
             $('#card-humidity').append('Humidity: ' + data.list[0].main.humidity + '%')
 
             //Appending the icon image for the 5-day forecast weather
@@ -106,7 +105,7 @@ function torontoForecast() {
 
             //Appending the date, temperature and humidity for the 5 day forecast
             $('#date2').append(data.list[7].dt_txt)
-            $('#card-temperature2').append('Temperature: ' + data.list[7].main.temp + ' &deg;C ')
+            $('#card-temperature2').append('Temperature: ' + Math.round(data.list[7].main.temp) + ' &deg;C ')
             $('#card-humidity2').append('Humidity: ' + data.list[7].main.humidity + '%')
 
             //Appending the icon image for the 5-day forecast weather
@@ -118,7 +117,7 @@ function torontoForecast() {
 
             //Appending the date, temperature and humidity for the 5 day forecast
             $('#date3').append(data.list[15].dt_txt)
-            $('#card-temperature3').append('Temperature: ' + data.list[15].main.temp + ' &deg;C ')
+            $('#card-temperature3').append('Temperature: ' + Math.round(data.list[15].main.temp) + ' &deg;C ')
             $('#card-humidity3').append('Humidity: ' + data.list[15].main.humidity + '%')
 
             //Appending the icon image for the 5-day forecast weather
@@ -130,7 +129,7 @@ function torontoForecast() {
 
             //Appending the date, temperature and humidity for the 5 day forecast
             $('#date4').append(data.list[23].dt_txt)
-            $('#card-temperature4').append('Temperature: ' + data.list[23].main.temp + ' &deg;C ')
+            $('#card-temperature4').append('Temperature: ' + Math.round(data.list[23].main.temp) + ' &deg;C ')
             $('#card-humidity4').append('Humidity: ' + data.list[23].main.humidity + '%')
 
             //Appending the icon image for the 5-day forecast weather
@@ -142,7 +141,7 @@ function torontoForecast() {
 
             //Appending the date, temperature and humidity for the 5 day forecast
             $('#date5').append(data.list[31].dt_txt)
-            $('#card-temperature5').append('Temperature: ' + data.list[31].main.temp + ' &deg;C ')
+            $('#card-temperature5').append('Temperature: ' + Math.round(data.list[31].main.temp) + ' &deg;C ')
             $('#card-humidity5').append('Humidity: ' + data.list[31].main.humidity + '%')
 
             //Appending the icon image for the 5-day forecast weather
@@ -163,7 +162,7 @@ $(document).ready(function () {
 
     $("#button-addon1").click(function () {
 
-        const city = $('.form-control').val();
+        const city = $('.form-control').val().trim();
 
         $.ajax({
             url: queryURL,
@@ -176,9 +175,15 @@ $(document).ready(function () {
                 $('.weather').empty()
 
                 $('#title').append(data.name)
-                $('#temperature').append('Temperature: ' + data.main.temp + ' &deg;C ')
+                $('#temperature').append('Temperature: ' + Math.round(data.main.temp) + ' &deg;C ')
                 $('#humidity').append('Humidity: ' + data.main.humidity + '%')
                 $('#wind').append('Wind Speed: ' + data.wind.speed + ' m/s')
+
+                const searchedImgIcon = "https://openweathermap.org/img/wn/" + (data.weather[0].icon) + "@2x.png"; 
+                const searchedIcon = $("<img>");
+
+                searchedIcon.attr("src", searchedImgIcon);
+                $('#title').append(searchedIcon)
 
                 //Getting lon + lat of city searched by user to get the UV Index
                 const lon = (data.coord.lon)
@@ -200,7 +205,6 @@ $(document).ready(function () {
 
                         $('#uv').empty()
                         $('#uv').append('UV Index: ' + uvIndex)
-                        console.log(uvIndex)
 
                         // If the UV index is between 0 and 2, style Green
                         if (uvIndex <= 2) {
@@ -232,13 +236,20 @@ $(document).ready(function () {
 
 });
 
-// This function appends all of the users search to the webpage
+// This function appends all of the users search
 function saveCity() {
 
-    const city = $('.form-control').val();
+    const city = $('.form-control').val().trim();
+    $("#newCity").append('<ul><a href="#">' + city + '</a></ul>');
 
-    const cityList = $('.list-group-item').append('<ul></ul>');
-    cityList.append(city)
+    event.preventDefault();
+
+    localStorage.setItem("city", city)
+    
+    const getCity = localStorage.getItem("city")
+
+    console.log("this is getting the city: ", getCity)
+    console.log(localStorage)
 
 }
 
@@ -248,7 +259,7 @@ $(document).ready(function () {
 
         const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
 
-        const city = $('.form-control').val();
+        const city = $('.form-control').val().trim();
 
         $.ajax({
             url: forecastURL,
@@ -261,7 +272,7 @@ $(document).ready(function () {
                 $('.forecast').empty()
 
                 $('#date').append(data.list[0].dt_txt)
-                $('#card-temperature').append('Temperature: ' + data.list[0].main.temp + ' &deg;C ')
+                $('#card-temperature').append('Temperature: ' + Math.round(data.list[0].main.temp) + ' &deg;C ')
                 $('#card-humidity').append('Humidity: ' + data.list[0].main.humidity + '%')
 
                 //Appending the icon image for the 5-day forecast weather
@@ -272,7 +283,7 @@ $(document).ready(function () {
                 $('#picture').append(icon1)
 
                 $('#date2').append(data.list[7].dt_txt)
-                $('#card-temperature2').append('Temperature: ' + data.list[7].main.temp + ' &deg;C ')
+                $('#card-temperature2').append('Temperature: ' + Math.round(data.list[7].main.temp) + ' &deg;C ')
                 $('#card-humidity2').append('Humidity: ' + data.list[7].main.humidity + '%')
 
                 //Appending the icon image for the 5-day forecast weather
@@ -283,7 +294,7 @@ $(document).ready(function () {
                 $('#picture2').append(icon2);
 
                 $('#date3').append(data.list[15].dt_txt)
-                $('#card-temperature3').append('Temperature: ' + data.list[15].main.temp + ' &deg;C ')
+                $('#card-temperature3').append('Temperature: ' + Math.round(data.list[15].main.temp) + ' &deg;C ')
                 $('#card-humidity3').append('Humidity: ' + data.list[15].main.humidity + '%')
 
                  //Appending the icon image for the 5-day forecast weather
@@ -294,7 +305,7 @@ $(document).ready(function () {
                  $('#picture3').append(icon3);
 
                 $('#date4').append(data.list[23].dt_txt)
-                $('#card-temperature4').append('Temperature: ' + data.list[23].main.temp + ' &deg;C ')
+                $('#card-temperature4').append('Temperature: ' + Math.round(data.list[23].main.temp) + ' &deg;C ')
                 $('#card-humidity4').append('Humidity: ' + data.list[23].main.humidity + '%')
 
                 //Appending the icon image for the 5-day forecast weather
@@ -305,7 +316,7 @@ $(document).ready(function () {
                 $('#picture4').append(icon4);
 
                 $('#date5').append(data.list[31].dt_txt)
-                $('#card-temperature5').append('Temperature: ' + data.list[31].main.temp + ' &deg;C ')
+                $('#card-temperature5').append('Temperature: ' + Math.round(data.list[31].main.temp) + ' &deg;C ')
                 $('#card-humidity5').append('Humidity: ' + data.list[31].main.humidity + '%')
 
                 //Appending the icon image for the 5-day forecast weather
@@ -316,9 +327,19 @@ $(document).ready(function () {
                 $('#picture5').append(icon5);
 
             }
+            
 
         });
+
+        //Clear the user search from the input bar once the submit button is clicked
+        $('.form-control').val('');
 
     });
 
 });
+
+//convert the variable to a string
+//log the value into local storage
+//get the value from the local storage
+//convert back to a variable
+//append to the webpage or console.log
