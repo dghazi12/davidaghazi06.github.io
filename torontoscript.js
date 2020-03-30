@@ -8,13 +8,6 @@ const toronto = 'Toronto'
 //This function is set to give the weather in Toronto, the default city chosen
 $(document).ready(function () {
 
-    //Checking to see if local storage is empty, if not append all cities in local storage
-    if (localStorage.length > 0){
-        appendStorage()
-    }else{
-        $("#newCity").append('')
-    }
-
     $.ajax({
         url: queryURL,
         dataType: 'json',
@@ -42,9 +35,10 @@ $(document).ready(function () {
             torontoIcon.attr("src", torontoImgIcon);
             $('#title').append(torontoIcon)
 
-            //API request to get the 5-day forecast for Toronto
+            //URL used to get the UV index for Toronto
             const torontoIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=52af5110a99ad9f2762ddfe25f5f2b69&lat=43.7&lon=-79.42";
 
+            //Making the API call to open weather map to get the UV index value for Toronto
             $.ajax({
                 url: torontoIndexURL,
                 dataType: 'json',
@@ -98,7 +92,7 @@ function torontoForecast() {
 
             $('.forecast').empty()
 
-            //Appending the date, temperature and humidity for the 5 day forecast
+            //Appending the date, temperature and humidity for day 1 of the 5 day forecast
             $('#date').append(data.list[0].dt_txt)
             $('#card-temperature').append('Temperature: ' + Math.round(data.list[0].main.temp) + ' &deg;C ')
             $('#card-humidity').append('Humidity: ' + data.list[0].main.humidity + '%')
@@ -110,7 +104,7 @@ function torontoForecast() {
             torontoIcon1.attr("src", torontoImgIcon1);
             $('#picture').append(torontoIcon1)
 
-            //Appending the date, temperature and humidity for the 5 day forecast
+            //Appending the date, temperature and humidity for day 2 of the 5 day forecast
             $('#date2').append(data.list[7].dt_txt)
             $('#card-temperature2').append('Temperature: ' + Math.round(data.list[7].main.temp) + ' &deg;C ')
             $('#card-humidity2').append('Humidity: ' + data.list[7].main.humidity + '%')
@@ -122,7 +116,7 @@ function torontoForecast() {
             torontoIcon2.attr("src", torontoImgIcon2);
             $('#picture2').append(torontoIcon2)
 
-            //Appending the date, temperature and humidity for the 5 day forecast
+            //Appending the date, temperature and humidity for day 3 of the 5 day forecast
             $('#date3').append(data.list[15].dt_txt)
             $('#card-temperature3').append('Temperature: ' + Math.round(data.list[15].main.temp) + ' &deg;C ')
             $('#card-humidity3').append('Humidity: ' + data.list[15].main.humidity + '%')
@@ -134,7 +128,7 @@ function torontoForecast() {
             torontoIcon3.attr("src", torontoImgIcon3);
             $('#picture3').append(torontoIcon3);
 
-            //Appending the date, temperature and humidity for the 5 day forecast
+            //Appending the date, temperature and humidity for day 4 of the 5 day forecast
             $('#date4').append(data.list[23].dt_txt)
             $('#card-temperature4').append('Temperature: ' + Math.round(data.list[23].main.temp) + ' &deg;C ')
             $('#card-humidity4').append('Humidity: ' + data.list[23].main.humidity + '%')
@@ -146,7 +140,7 @@ function torontoForecast() {
             torontoIcon4.attr("src", torontoImgIcon4);
             $('#picture4').append(torontoIcon4);
 
-            //Appending the date, temperature and humidity for the 5 day forecast
+            //Appending the date, temperature and humidity for day 5 the 5 day forecast
             $('#date5').append(data.list[31].dt_txt)
             $('#card-temperature5').append('Temperature: ' + Math.round(data.list[31].main.temp) + ' &deg;C ')
             $('#card-humidity5').append('Humidity: ' + data.list[31].main.humidity + '%')
