@@ -85,7 +85,7 @@ function torontoWeather(){
 }
 
 //This function shows the 5-day forecast for Toronto, the default city chosen
-function torontoForecast(cityName) {
+function torontoForecast() {
 
     $.ajax({
         url: forecastURL,
@@ -162,3 +162,7 @@ function torontoForecast(cityName) {
     });
 
 }
+
+// $('#searched-cities').click(function (){
+//     torontoWeather()
+// })

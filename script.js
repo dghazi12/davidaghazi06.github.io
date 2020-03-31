@@ -9,10 +9,12 @@ $(document).ready(function () {
     }
 
     //Once the submit button is clicked, an API call will be made to get the 5-day forecast for the city searched by the user
-    $("#button-addon1").click(function () {
+    $("#button-addon1").click(function testing1() {
+
+        event.preventDefault();
 
         //This is where the user inputs the specific city they want to search for 
-        const city = $('.form-control').val().trim();
+        let city = $('.form-control').val().trim();
 
         $.ajax({
             url: queryURL,
@@ -91,13 +93,15 @@ $(document).ready(function () {
 });
 
 //5 Day Forecast for the cities searched by the users
-$(document).ready(function fivedayForecast() {
+$(document).ready(function () {
 
-    $("#button-addon1").click(function () {
+    $("#button-addon1").click(function fivedayForecast() {
+
+        event.preventDefault();
 
         const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
 
-        const city = $('.form-control').val().trim();
+        let city = $('.form-control').val().trim();
 
         $.ajax({
             url: forecastURL,
@@ -208,15 +212,20 @@ function appendStorage() {
     for (let index = 0; index < cities.length; index++) {
         const element = cities[index];
 
-        $("#newCity").append('<ul><button class="btn btn-primary clear">' + element + '</button></ul>');
+        $("#newCity").append('<ul class="clearPage"><button class="btn btn-primary">' + element + '</button></ul>');
 
     }
 
 }
 
 $(".cities").click(function () {
-    let cityName = $(event.target).text()
+    let city = $(event.target).text()
+    console.log(city)
+})
 
-    // fivedayForecast()
-    console.log(cityName)
+//Clears the local storage and anything appended to the webapge from the user
+$(".clear").click(function(){
+    $("#newCity").empty()
+    localStorage.clear()
+    // $(".clearPage").empty()
 })
