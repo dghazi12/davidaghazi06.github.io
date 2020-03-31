@@ -220,6 +220,10 @@ function appendStorage() {
 
 $(".cities").click(function () {
     let city = $(event.target).text()
+
+    testing1()
+    fivedayForecast()
+
     console.log(city)
 })
 
