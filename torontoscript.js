@@ -5,8 +5,13 @@ const key = '52af5110a99ad9f2762ddfe25f5f2b69'
 const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
 const toronto = 'Toronto'
 
+//This runs the functions only when the page is ready
+$(document).ready(function() {
+    torontoWeather()
+});
+
 //This function is set to give the weather in Toronto, the default city chosen
-$(document).ready(function () {
+function torontoWeather(){
 
     $.ajax({
         url: queryURL,
@@ -77,10 +82,10 @@ $(document).ready(function () {
 
     torontoForecast()
 
-});
+}
 
 //This function shows the 5-day forecast for Toronto, the default city chosen
-function torontoForecast() {
+function torontoForecast(cityName) {
 
     $.ajax({
         url: forecastURL,

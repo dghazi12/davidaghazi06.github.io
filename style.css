@@ -1,36 +1,87 @@
+.jumbotron{
+	background-color: #484848;
+	color: white;
+	padding: 20px;
+	text-align: center;
+}
+
+.form-control{
+	margin-top: -260px;
+}
+
+#button-addon1 {
+	margin-top: -260px;
+	margin-right: 1100px;
+	height: 39px;
+}
+
+.currentweather{
+	width: auto;
+	margin-right: 15px;
+	margin-left: 100px;
+}
+
+.forecastTitle{
+	width: auto;
+}
+
+.cities{
+	margin-top: -225px;
+	height: auto;
+	width: 100px;
+}
+
+h3{
+	margin-left: 325px;
+}
+
+.out{
+	background-color: #00AEEB;
+	color: white;
+	width: 40px;
+	margin-top: 10px;
+	margin-left: 25px;
+
+}
+
+.out1{
+	margin-top: 10px;
+	margin-left: 340px;
+}
+
+.out5{
+	margin-right: 12px;
+}
+
 .uvGreen {
 	background-color: green;
 	border-radius: 5px;
+	width: 20px;
+	color: white;
 }
 
 .uvYellow {
 	background-color: yellow;
 	border-radius: 5px;
+	width: 150px;
 }
 
 .uvOrange {
 	background-color: orange;
 	border-radius: 5px;
+	width: 150px;
 }
 
 .uvRed {
 	background-color: red;
 	border-radius: 5px;
+	width: 150px;
+	color: white;
 }
 
 .uvPurple {
 	background-color: purple;
 	border-radius: 5px;
+	width: 150px;
+	color: white;
 }
-
-.hide{
-    display:none
-} 
-
-/* .list-group-item{
-	background-color: green;
-}
-
-.newBTN{
-	background-color: red;
-} */

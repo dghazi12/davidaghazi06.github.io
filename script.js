@@ -1,5 +1,5 @@
 //This function, once ready, will make a request to the open weather map API and retrieve all of the data
-$(document).ready(function CurrentWeather() {
+$(document).ready(function () {
 
     //Checking to see if local storage is empty, if not append all cities in local storage
     if (localStorage.length > 0) {
@@ -91,7 +91,8 @@ $(document).ready(function CurrentWeather() {
 });
 
 //5 Day Forecast for the cities searched by the users
-$(document).ready(function WeatherForecast() {
+$(document).ready(function fivedayForecast() {
+
     $("#button-addon1").click(function () {
 
         const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
@@ -170,7 +171,6 @@ $(document).ready(function WeatherForecast() {
 
             }
 
-
         });
 
         //Clear the user search from the input bar once the submit button is clicked
@@ -208,14 +208,15 @@ function appendStorage() {
     for (let index = 0; index < cities.length; index++) {
         const element = cities[index];
 
-        $("#newCity").append('<ul><button class="btn btn-primary">' + element + '</button></ul>');
+        $("#newCity").append('<ul><button class="btn btn-primary clear">' + element + '</button></ul>');
 
     }
 
 }
 
-$(".cities").click(function (event) {
+$(".cities").click(function () {
     let cityName = $(event.target).text()
+
+    // fivedayForecast()
     console.log(cityName)
-    // CurrentWeather(cityName)
 })
