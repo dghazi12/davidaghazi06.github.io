@@ -1,6 +1,6 @@
 # 06 Server-Side APIs: Weather Dashboard
 
-### Built a weather dashboard using the OpenWeather API
+##### Built a weather dashboard using the OpenWeather API
 
 ## User Story
 
@@ -27,8 +27,8 @@
 
 ## Built With:
 
-### HTML
-### CSS
-### Javascript
-### Bootstrap
-### jQuery
+##### HTML
+##### CSS
+##### Javascript
+##### Bootstrap
+##### jQuery
