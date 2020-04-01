@@ -25,7 +25,7 @@
 
 ## The following image demonstrates the application functionality:
 
-<img src="images/WeatherDashboard.png>
+![](Images/WeatherDashboard.png)
 
 ## Built With:
 
