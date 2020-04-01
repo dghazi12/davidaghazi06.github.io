@@ -25,6 +25,8 @@
 
 ## The following image demonstrates the application functionality:
 
+<img src="images/WeatherDashboard>
+
 ## Built With:
 
 #### HTML
