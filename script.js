@@ -4,12 +4,10 @@ $(document).ready(function () {
     //Checking to see if local storage is empty, if not append all cities in local storage
     if (localStorage.length > 0) {
         appendStorage()
-    } else {
-        $("#newCity").append('')
     }
 
     //Once the submit button is clicked, an API call will be made to get the 5-day forecast for the city searched by the user
-    $("#button-addon1").click(function testing1() {
+    $("#button-addon1").click(function () {
 
         event.preventDefault();
 
@@ -95,7 +93,7 @@ $(document).ready(function () {
 //5 Day Forecast for the cities searched by the users
 $(document).ready(function () {
 
-    $("#button-addon1").click(function fivedayForecast() {
+    $("#button-addon1").click(function () {
 
         event.preventDefault();
 
@@ -191,11 +189,26 @@ function saveCity() {
 
     event.preventDefault();
 
-    let city = $('.form-control').val().trim()
+    //Gets the user input and converts it all to uppercase letters
+    let city = $('.form-control').val().trim().toUpperCase()
 
-    cities.push(city)
+    //push new city into the Array
+    let containsCity = false;
 
-    $("#newCity").append('<ul><button class="btn btn-primary">' + city + '</button></ul>');
+    //This two if statement will checksto see if the city searched by the user has already been appended, if so it will not append the same city twice. 
+    if (cities != null) {
+        $(cities).each(function (x) {
+            if (cities[x] == city) {
+                containsCity = true;
+            }
+        });
+    }
+
+    if (containsCity === false) {
+        cities.push(city);
+        $("#newCity").append('<ul><button class="btn btn-primary">' + city + '</button></ul>');
+        console.log(containsCity)
+    }
 
     //Saving the users search to local storage
     localStorage.setItem("cities", JSON.stringify(cities))
@@ -217,19 +230,3 @@ function appendStorage() {
     }
 
 }
-
-$(".cities").click(function () {
-    let city = $(event.target).text()
-
-    testing1()
-    fivedayForecast()
-
-    console.log(city)
-})
-
-//Clears the local storage and anything appended to the webapge from the user
-$(".clear").click(function(){
-    $("#newCity").empty()
-    localStorage.clear()
-    // $(".clearPage").empty()
-})
