@@ -1,7 +1,6 @@
 //This function, once ready, will make a request to the open weather map API and retrieve all of the data
 $(document).ready(function () {
 
-    //Checking to see if local storage is empty, if not append all cities in local storage
     if (localStorage.length > 0) {
         appendStorage()
     }
@@ -200,6 +199,7 @@ function saveCity() {
         $(cities).each(function (x) {
             if (cities[x] == city) {
                 containsCity = true;
+                console.log(containsCity)
             }
         });
     }
