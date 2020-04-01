@@ -1,8 +1,8 @@
 //Open Weather URL and key to make API calls
-const queryURL = 'http://api.openweathermap.org/data/2.5/weather'
+const queryURL = 'https://api.openweathermap.org/data/2.5/weather'
 const key = '52af5110a99ad9f2762ddfe25f5f2b69'
 
-const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
+const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast'
 const toronto = 'Toronto'
 
 //This runs the functions only when the page is ready

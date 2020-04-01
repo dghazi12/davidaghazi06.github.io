@@ -79,7 +79,7 @@ $(".cities").click(function () {
     event.preventDefault();
 
     //5-day forecast for the city selected from the search history
-    const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
+    const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast'
 
     $.ajax({
         url: forecastURL,

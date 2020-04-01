@@ -98,7 +98,7 @@ $(document).ready(function () {
 
         event.preventDefault();
 
-        const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
+        const forecastURL = 'https://api.openweathermap.org/data/2.5/forecast'
 
         let city = $('.form-control').val().trim();
 
