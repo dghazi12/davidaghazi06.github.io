@@ -23,14 +23,16 @@
     WHEN I click on a city in the search history
     THEN I am again presented with current and future conditions for that city
 
-## The following image demonstrates the application functionality:
+## The following image demonstrates the application functionality
 
 ![](Images/WeatherDashboard.png)
 
-## Built With:
+## Built With
 
 #### HTML
 #### CSS
 #### Javascript
 #### Bootstrap
 #### jQuery
+
+## Link to Application
