@@ -1,14 +1,14 @@
-#06 Server-Side APIs: Weather Dashboard
+# 06 Server-Side APIs: Weather Dashboard
 
-######Built a weather dashboard using the OpenWeather API
+###### Built a weather dashboard using the OpenWeather API
 
-##User Story
+## User Story
 
     AS A traveler
     I WANT to see the weather outlook for multiple cities
     SO THAT I can plan a trip accordingly
 
-##Criteria
+## Criteria
 
     GIVEN a weather dashboard with form inputs
 
@@ -23,4 +23,4 @@
     WHEN I click on a city in the search history
     THEN I am again presented with current and future conditions for that city
 
-##The following image demonstrates the application functionality:
+## The following image demonstrates the application functionality:
