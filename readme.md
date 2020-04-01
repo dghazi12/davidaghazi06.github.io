@@ -1,6 +1,6 @@
 # 06 Server-Side APIs: Weather Dashboard
 
-###### Built a weather dashboard using the OpenWeather API
+### Built a weather dashboard using the OpenWeather API
 
 ## User Story
 
@@ -24,3 +24,11 @@
     THEN I am again presented with current and future conditions for that city
 
 ## The following image demonstrates the application functionality:
+
+## Built With:
+
+### HTML
+### CSS
+### Javascript
+### Bootstrap
+### jQuery

@@ -89,6 +89,17 @@ h3{
 
 .btn-primary,
 .clear{
-	margin-top: 1px;
-	width: auto;
+	margin-top: 2px;
+}
+
+body{
+	background-color: #E6F6FA;
+}
+
+.dayweather{
+	background-color: #C8FFA3;
+}
+
+.search{
+	background-color: #ECECEC;
 }

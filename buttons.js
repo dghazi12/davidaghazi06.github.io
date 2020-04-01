@@ -1,9 +1,12 @@
+//When the user clicks on one of the cities saved in their search history, it will make an API call and get back the data of the city the user clicked on
 $(".cities").click(function () {
 
+    //After storing the users search history and appending it to the webpage, this represents the value of the button clicked by the user
     let city = $(event.target).text()
 
     event.preventDefault();
 
+    //Making the API call
     $.ajax({
         url: queryURL,
         dataType: 'json',
@@ -75,6 +78,7 @@ $(".cities").click(function () {
 
     event.preventDefault();
 
+    //5-day forecast for the city selected from the search history
     const forecastURL = 'http://api.openweathermap.org/data/2.5/forecast'
 
     $.ajax({
@@ -157,5 +161,4 @@ $(".cities").click(function () {
 $(".clear").click(function () {
     $("#newCity").empty()
     localStorage.clear()
-    // $(".clearPage").empty()
 })

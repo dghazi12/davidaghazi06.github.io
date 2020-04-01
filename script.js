@@ -1,9 +1,11 @@
 //This function, once ready, will make a request to the open weather map API and retrieve all of the data
 $(document).ready(function () {
 
-    if (localStorage.length > 0) {
-        appendStorage()
-    }
+    if (localStorage.getItem("cities") === null) {
+        console.log("Storage is Empty!")
+      }else{
+          appendStorage()
+      }
 
     //Once the submit button is clicked, an API call will be made to get the 5-day forecast for the city searched by the user
     $("#button-addon1").click(function () {
@@ -199,7 +201,6 @@ function saveCity() {
         $(cities).each(function (x) {
             if (cities[x] == city) {
                 containsCity = true;
-                console.log(containsCity)
             }
         });
     }
@@ -207,7 +208,6 @@ function saveCity() {
     if (containsCity === false) {
         cities.push(city);
         $("#newCity").append('<ul><button class="btn btn-primary">' + city + '</button></ul>');
-        console.log(containsCity)
     }
 
     //Saving the users search to local storage

@@ -19,14 +19,14 @@
 
 </head>
 
+ <!-- Title of the webpage-->
+ <div class="jumbotron">
+
+    <h1>Weather Dashboard</h1>
+
+</div>
+
 <body class="container-fluid">
-
-    <!-- Title of the webpage-->
-    <div class="jumbotron">
-
-        <h1>Weather Dashboard</h1>
-
-    </div>
 
     <!-- This section will display the temperature, humidity, Wind Speed and UV Index of any city the user searches -->
     <div class="row justify-content-md-center">
@@ -35,7 +35,7 @@
             <h4>Search for a city: </h4>
         </div>
 
-        <div class="card-body test container-fluid card currentweather row col" style="width: 50rem;">
+        <div class="card-body container-fluid card currentweather row col dayweather" style="width: 50rem;">
             <h1 class="card-title weather" id="title"></h1>
             <p class="card-text weather" id="temperature"></p>
             <p class="card-text weather" id="humidity"></p>
@@ -58,7 +58,7 @@
     <div class="container row">
 
         <!-- This section will log the users previous and current searches -->
-        <div class="card cities col col-lg-3" id="newCity">
+        <div class="card cities col col-lg-3 search" id="newCity">
 
             <ul class="list-group list-group-flush">
 
